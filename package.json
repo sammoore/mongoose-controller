@@ -1,0 +1,30 @@
+{
+  "name": "mongoose-controller",
+  "version": "0.1.0",
+  "description": "A Promise-only, CRUD interface for retrieving documents from a mongoose.Model.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/samtheprogram/mongoose-controller.git"
+  },
+  "keywords": [
+    "mongoose"
+  ],
+  "author": "Sam Moore <sam@toldmedia.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/samtheprogram/mongoose-controller/issues"
+  },
+  "homepage": "https://github.com/samtheprogram/mongoose-controller#readme",
+  "dependencies": {
+    "lodash.pick": "~4.4",
+    "mocha": "~2.5",
+    "mongoose": "~4.7.0"
+  }
+}
