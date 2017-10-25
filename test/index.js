@@ -206,7 +206,7 @@ describe('Controller', function () {
 
       const controller = new Controller(Model);
 
-      return new Model().save().then((doc) => {
+      new Model().save().then((doc) => {
         const conditions = { where: { _id: doc._id } };
         return controller.update(conditions, { foo: 'bar' })
         .then(() => { done(new Error('did not throw')) })
