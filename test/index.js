@@ -4,6 +4,7 @@ const assert = require('assert');
 const mongoose = require('mongoose');
 const Controller = require('../');
 
+mongoose.Promise = Promise;
 const ObjectId = mongoose.mongo.ObjectId;
 
 function model(name, schema = new mongoose.Schema()) {

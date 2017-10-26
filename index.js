@@ -3,8 +3,8 @@
 const { keys } = Object;
 
 const assert = require('assert');
-const pick = require('lodash.pick');
 const mongoose = require('mongoose');
+const pick = require('lodash.pick');
 
 mongoose.Promise = Promise;
 
@@ -68,7 +68,6 @@ Controller.prototype.destroy = function (conditions = {}, doc) {
     return Promise.reject(new Error('MissingId'));
   }
 
-  console.log(conditions.where._id);
   return buildQuery(this.Model.findOne(), conditions).exec()
   .then((model) => {
     if (!model) return null;
