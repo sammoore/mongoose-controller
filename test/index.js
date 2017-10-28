@@ -33,7 +33,6 @@ describe('Controller', function () {
       list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Wrapped' }],
       foo: String
     }));
-    console.log(Model);
     controller = new Controller(Model);
   });
 
