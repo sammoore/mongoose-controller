@@ -17,7 +17,7 @@
     "mongoose"
   ],
   "author": "Sam Moore <sam@toldmedia.com>",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/samtheprogram/mongoose-controller/issues"
   },
