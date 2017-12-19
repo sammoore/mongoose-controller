@@ -19,7 +19,7 @@ function Controller(Model, options) {
     throw new TypeError('Model must be a mongoose.Model');
   }
 
-  this.options = assign({ whitelist: [], blacklist: [] }, options || {});
+  this.options = assign({ whitelist: [], blacklist: [], queries: {} }, options || {});
   this[MODEL] = Model;
 }
 
@@ -93,7 +93,12 @@ function buildQuery(query, conditions, options) {
   conditions = pick(conditions, supported);
 
   for (var key in conditions) {
-    query[key](conditions[key]);
+    if (key in options.queries) {
+      var configure = options.queries[key];
+      configure(query, conditions[key]);
+    } else {
+      query[key](conditions[key]);
+    }
   }
   
   return query;
