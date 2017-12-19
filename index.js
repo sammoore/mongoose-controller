@@ -1,6 +1,6 @@
 'use strict';
 
-const { keys } = Object;
+const { assign, keys } = Object;
 
 const assert = require('assert');
 const mongoose = require('mongoose');
@@ -10,15 +10,16 @@ mongoose.Promise = Promise;
 
 const MODEL = Symbol();
 
-function Controller(Model) {
+function Controller(Model, options) {
   if (!(this instanceof Controller)) {
-    return new Controller(Model);
+    return new Controller(Model, options);
   }
 
   if (Object.getPrototypeOf(Model) != mongoose.Model) {
     throw new TypeError('Model must be a mongoose.Model');
   }
 
+  this.options = assign({ whitelist: [], blacklist: [] }, options || {});
   this[MODEL] = Model;
 }
 
@@ -33,7 +34,7 @@ Controller.prototype.count = function (conditions = {}) {
     delete conditions.populate;
   } catch (err) {}
 
-  return buildQuery(this.Model.count(), conditions).exec();
+  return buildQuery(this.Model.count(), conditions, this.options).exec();
 };
 
 Controller.prototype.create = function (doc) {
@@ -43,11 +44,11 @@ Controller.prototype.create = function (doc) {
 };
 
 Controller.prototype.find = function (conditions = {}, doc) {
-  return buildQuery(this.Model.find(), conditions).exec();
+  return buildQuery(this.Model.find(), conditions, this.options).exec();
 };
 
 Controller.prototype.findOne = function (conditions = {}, doc) {
-  return buildQuery(this.Model.findOne(), conditions).exec();
+  return buildQuery(this.Model.findOne(), conditions, this.options).exec();
 };
 
 Controller.prototype.update = function (conditions = {}, doc) {
@@ -55,7 +56,7 @@ Controller.prototype.update = function (conditions = {}, doc) {
     return Promise.reject(new Error('MissingId'));
   }
 
-  return buildQuery(this.Model.findOne(), conditions).exec()
+  return buildQuery(this.Model.findOne(), conditions, this.options).exec()
   .then((model) => {
     if (!model) return null;
 
@@ -68,7 +69,7 @@ Controller.prototype.destroy = function (conditions = {}, doc) {
     return Promise.reject(new Error('MissingId'));
   }
 
-  return buildQuery(this.Model.findOne(), conditions).exec()
+  return buildQuery(this.Model.findOne(), conditions, this.options).exec()
   .then((model) => {
     if (!model) return null;
 
@@ -85,10 +86,13 @@ const SUPPORTED = [
   'where'
 ];
 
-function buildQuery(query, conditions) {
-  let supported = pick(conditions, SUPPORTED);
+function buildQuery(query, conditions, options) {
+  const { blacklist, whitelist } = options;
+  const supported = SUPPORTED.filter(k => !(k in blacklist)).concat(whitelist);
 
-  for (var key in supported) {
+  conditions = pick(conditions, supported);
+
+  for (var key in conditions) {
     query[key](conditions[key]);
   }
   
