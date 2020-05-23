@@ -1,6 +1,6 @@
 {
   "name": "mongoose-controller",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Promise-only, CRUD interface for retrieving documents from a mongoose.Model.",
   "main": "index.js",
   "directories": {
