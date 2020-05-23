@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test"
+    "test": "./node_modules/mocha/bin/mocha test",
+    "prettier": "prettier --config ./.prettierrc.js --write ./"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
   },
   "devDependencies": {
     "mocha": "~3.5",
-    "mongoose": "~4.7"
+    "mongoose": "~4.7",
+    "prettier": "^2.0.5"
   },
   "peerDependencies": {
     "mongoose": "^4.7.0"

@@ -1,8 +1,7 @@
 'use strict';
 
-const { assign, keys } = Object;
+const { assign } = Object;
 
-const assert = require('assert');
 const mongoose = require('mongoose');
 const pick = require('lodash.pick');
 
@@ -43,11 +42,11 @@ Controller.prototype.create = function (doc) {
   });
 };
 
-Controller.prototype.find = function (conditions = {}, doc) {
+Controller.prototype.find = function (conditions = {}, _) {
   return buildQuery(this.Model.find(), conditions, this.options).exec();
 };
 
-Controller.prototype.findOne = function (conditions = {}, doc) {
+Controller.prototype.findOne = function (conditions = {}, _) {
   return buildQuery(this.Model.findOne(), conditions, this.options).exec();
 };
 
@@ -64,7 +63,7 @@ Controller.prototype.update = function (conditions = {}, doc) {
   });
 };
 
-Controller.prototype.destroy = function (conditions = {}, doc) {
+Controller.prototype.destroy = function (conditions = {}, _) {
   if (!conditions.where || !conditions.where._id) {
     return Promise.reject(new Error('MissingId'));
   }
