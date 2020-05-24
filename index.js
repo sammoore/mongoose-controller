@@ -56,11 +56,11 @@ Controller.prototype.update = function (conditions = {}, doc) {
   }
 
   return buildQuery(this.Model.findOne(), conditions, this.options).exec()
-  .then((model) => {
-    if (!model) return null;
+    .then((model) => {
+      if (!model) return null;
 
-    return model.set(doc).save();
-  });
+      return model.set(doc).save();
+    });
 };
 
 Controller.prototype.destroy = function (conditions = {}, _) {
@@ -69,11 +69,11 @@ Controller.prototype.destroy = function (conditions = {}, _) {
   }
 
   return buildQuery(this.Model.findOne(), conditions, this.options).exec()
-  .then((model) => {
-    if (!model) return null;
+    .then((model) => {
+      if (!model) return null;
 
-    return model.remove();
-  });
+      return model.remove();
+    });
 };
 
 const SUPPORTED = [
@@ -87,7 +87,7 @@ const SUPPORTED = [
 
 function buildQuery(query, conditions, options) {
   const { blacklist, whitelist } = options;
-  const supported = SUPPORTED.filter(k => !(k in blacklist)).concat(whitelist);
+  const supported = SUPPORTED.filter((k) => !(k in blacklist)).concat(whitelist);
 
   conditions = pick(conditions, supported);
 

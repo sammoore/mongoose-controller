@@ -25,15 +25,15 @@ describe('module', function () {
 });
 
 describe('Controller', function () {
-  var Wrapped, Model, controller;
+  var Model, controller;
 
   before(function () {
-    Wrapped = model('Wrapped');
+    model('Wrapped');
     Model = model(
       'Controller',
       new mongoose.Schema({
         list: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Wrapped' }],
-        foo: String,
+        foo: String
       })
     );
     controller = new Controller(Model);
@@ -194,7 +194,7 @@ describe('Controller', function () {
           controller.update(
             { where: { _id: doc._id } },
             {
-              foo: 'bar',
+              foo: 'bar'
             }
           )
         )
@@ -271,7 +271,7 @@ describe('Controller', function () {
 
     it('throws errors through a promise', function (done) {
       const schema = new mongoose.Schema();
-      schema.pre('remove', function (next) {
+      schema.pre('remove', function (_) {
         throw Error();
       });
       const Model = model('Controller#destroy:throws', schema);
@@ -283,7 +283,7 @@ describe('Controller', function () {
             .destroy(
               { where: { _id: doc._id } },
               {
-                foo: 'bar',
+                foo: 'bar'
               }
             )
             .then(() => done(new Error('did not throw')))
