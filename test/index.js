@@ -51,7 +51,7 @@ describe('Controller', function () {
 
   describe('#count', function () {
     it('returns a promise', function () {
-      assert.ok(controller.create() instanceof Promise);
+      assert.ok(controller.create().catch(() => {}) instanceof Promise);
     });
 
     it('returns a number through a promise', function () {
@@ -170,7 +170,7 @@ describe('Controller', function () {
 
   describe('#update', function () {
     it('returns a promise', function () {
-      assert.ok(controller.update() instanceof Promise);
+      assert.ok(controller.update().catch(() => {}) instanceof Promise);
     });
 
     it('throws MissingId without where clause', function (done) {
@@ -242,7 +242,7 @@ describe('Controller', function () {
 
   describe('#destroy', function () {
     it('returns a promise', function () {
-      assert.ok(controller.destroy() instanceof Promise);
+      assert.ok(controller.destroy().catch(() => {}) instanceof Promise);
     });
 
     it('throws MissingId without where clause', function (done) {
