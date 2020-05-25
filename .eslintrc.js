@@ -21,7 +21,7 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     indent: ['error', 2],
     'no-empty': ['error', { allowEmptyCatch: true }],
-    'no-unused-vars': ['error', { argsIgnorePattern: "^__*$" }],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^__*$' }],
     semi: [2, 'always'],
     quotes: ['error', 'single']
   }

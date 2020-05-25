@@ -27,7 +27,7 @@
     "lodash.pick": "~4.4"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "~7.1",
     "eslint-plugin-editorconfig": "^2.1.2",
     "eslint-plugin-mocha": "^7.0.0",
     "mocha": "~7.2",
