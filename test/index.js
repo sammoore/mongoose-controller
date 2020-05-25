@@ -11,7 +11,9 @@ function model(name, schema = new mongoose.Schema()) {
   return mongoose.model(name, schema);
 }
 
-mongoose.connect('mongodb://localhost:27017/mongoose-controller-test');
+mongoose.connect('mongodb://localhost:27017/mongoose-controller-test', {
+  useMongoClient: true
+});
 
 before(function (done) {
   model('__db').db.dropDatabase(done);
