@@ -32,7 +32,7 @@
     "eslint-plugin-editorconfig": "^2.1.2",
     "eslint-plugin-mocha": "^7.0.0",
     "husky": "^4.2.5",
-    "mocha": "~7.2",
+    "mocha": "~10.2",
     "mongoose": "4.13.20"
   },
   "peerDependencies": {
